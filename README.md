@@ -8,16 +8,6 @@ A standalone 64‑bit exe. No installation, no registry, no runtime to install. 
 
 <img width="1920" height="1041" alt="2026-10-18_072547" src="https://github.com/user-attachments/assets/16874a5f-1dbc-43e7-b485-c9cc1070096d" />
 
-```
- Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
-────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
- #  Plugin        Check   Path                      │ Extension  Status
- 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
- 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
- 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
-```
-
----
 
 ## Why
 
