@@ -6,6 +6,8 @@ PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `winc
 
 A standalone 64‑bit exe. No installation, no registry, no runtime to install. Freeware.
 
+<img width="1920" height="1041" alt="2026-10-18_072547" src="https://github.com/user-attachments/assets/16874a5f-1dbc-43e7-b485-c9cc1070096d" />
+
 ```
  Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
 ────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
