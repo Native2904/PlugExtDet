@@ -6,8 +6,16 @@ PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `winc
 
 A standalone 64‑bit exe. No installation, no registry, no runtime to install. Freeware.
 
-<img width="1920" height="1041" alt="2026-10-18_072547" src="https://github.com/user-attachments/assets/16874a5f-1dbc-43e7-b485-c9cc1070096d" />
+```
+ Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
+────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
+ #  Plugin        Check   Path                      │ Extension  Status
+ 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
+ 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
+ 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
+```
 
+---
 
 ## Why
 
@@ -51,7 +59,9 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 
 ### Preview
 - **Preview tab** – pick a file and see what every content plugin delivers: field, value, readable type and where it is used
-- Only plugins whose detect string matches the file are asked (optionally all), each in its own short-lived process with a time limit; nothing is ever written
+- **Sidebar** with all content plugins and how many fields have a value; the plugin that knows most about the file opens on the right, tick more as you like – remembered per extension for the session
+- **tc (pseudo)** – TC's own basic fields (size, dates, attributes, version, comment …), read by PlugExtDet from Windows, with the real field reference `[=tc.…]`
+- Matching plugins are asked in the background, each in its own short-lived process with a time limit; others on request; nothing is ever written
 - Units on request, ready field reference `[=plugin.field]` to copy
 - Call it from a TC button: `PlugExtDet.exe /preview "%P%N"` – a running PlugExtDet receives the file
 
@@ -67,9 +77,9 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 ### Save – carefully
 1. Preview of every change, old and new side by side
 2. Backup of each file before it is touched
-3. TC is closed via its window (no process killing), the file is written
+3. TC is closed via its window (no process killing), the file is written – PlugExtDet remembers which TC was running (32 or 64 bit)
 4. The result is read back and verified
-5. Every change is logged, TC is started again
+5. Every change is logged, and exactly the TC that PlugExtDet closed is started again – none if TC wasn't running
 6. *File › Restore last backup* undoes it
 
 ### Keep track
@@ -83,7 +93,7 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 ### Comfort
 - Colors: Standard (Windows), Light, Dark – dark title bar on Windows 10/11, high contrast respected
 - Help as CHM (F1 opens the chapter of the current tab), legend with every symbol (Shift+F1)
-- English and German built in; Russian, Ukrainian, Czech and Danish included; any language can be added
+- English and German built in; Russian, Ukrainian, Czech and Danish included as example files; any language can be added
 - Language follows TC automatically and can be switched without restart
 - Resizable panes, sortable columns, own commands in the context menu
 - Long paths are shortened in the middle; the tooltip shows the full path
@@ -124,7 +134,7 @@ Nothing is written until you press **Ctrl+S** and confirm the preview.
 | File | Purpose |
 |---|---|
 | `PlugExtDet.exe` | the program |
-| `PlugExtDet.lng` | translations (UTF-16) |
+| `Language\*_example.lng` | translations as examples (UTF-16) – remove `_example` from the name to use one |
 | `PlugExtDet_eng.chm`, `PlugExtDet_deu.chm` | help |
 | `PlugExtDet.ini` | settings, remembered and deactivated entries, plugins skipped in the preview; created on first start |
 | `PlugExtDet.inventory.ini`, `PlugExtDet.log` | inventory and change log |
@@ -134,22 +144,37 @@ If the program folder is write-protected, the data files go to `%APPDATA%\PlugEx
 
 ## Translations
 
-Every language is a section in `PlugExtDet.lng`, named like TC's language file (`WCMD_POL.LNG` → `[pol]`):
+Every language is its own file in the folder `Language`. They are shipped as **examples** only – `rus_example.lng`, `ukr_example.lng`, `cze_example.lng`, `dan_example.lng` and `eng_example.lng` (all English, as a template). PlugExtDet never reads a file with "example" in its name.
 
-1. Copy the `[eng]` section and rename it
+**To use a language:** rename the file and remove `_example`, e.g. `ukr_example.lng` → `ukr.lng`. An update only brings new `*_example.lng` files, so your own file is never overwritten. After an update, compare it with the new example file and copy over the lines you are missing.
+
+The language is the section name in the first line, e.g. `[ukr]` – the same code as TC's language file (`WCMD_UKR.LNG` → `ukr`); the file name does not matter. With *auto*, PlugExtDet follows TC's language.
+
+**New language:**
+1. Copy `eng_example.lng`, e.g. as `pol.lng`, and change the first line to `[pol]`
 2. Translate the text right of `=`, keep placeholders like `{n}`, `\t`, `\n` and `&`
-3. Add `lang_name=Polski (Polish)` for the language selection
+3. Set `lang_name=Polski (Polish)` for the language selection
 4. Save as UTF-16 LE
 
-After an update, new texts appear at the end of each section in English with a `;` in front – translate them and remove the `;`. Contributions are welcome via issues or pull requests.
+Lines starting with `;` are not translated yet – translate them and remove the `;`. Contributions are welcome in the TC forum or via issues or pull requests.
 
 ## Good to know
 
 - 32-bit-only plugins can't be queried by the 64-bit exe; they are listed but not compared or previewed
-- TC's own fields (`tc.*`) and file system plugin fields (`<fs>`) are not plugins and can't be previewed
+- TC's own fields (`tc.*`) are read by PlugExtDet itself as *tc (pseudo)* – almost exactly like TC; file system plugin fields (`<fs>`) only exist inside TC
 - Some plugins refuse to load outside TC (Windows error 1114); they are marked, not treated as broken
 - Windows shows CHM help from network drives only as a table of contents – copy the help locally
 - Unsigned tools are occasionally flagged by machine-learning virus scanners; such reports are submitted to the vendor as false positives
+
+## Thanks
+
+PlugExtDet grew up in the Total Commander forum. A big thank you to everyone who asked, tested and suggested – especially **AntonyD** (the reason for the whole program; tooltips and search), **BEB** (preview, collapsed groups, sidebar, many tests, Ukrainian translation), **petermad** (detect-string and MULTIMEDIA tests, Danish translation), **macleod** (Czech translation) and **TychoBarfy** (the idea for "Used in").
+
+And a big thank you to **Christian Ghisler** for Total Commander – without it none of this would be possible.
+
+## Support
+
+PlugExtDet is free. If you would like to support the work: [ko-fi.com/native2904](https://ko-fi.com/native2904) – thank you!
 
 ## License
 
