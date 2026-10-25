@@ -7,13 +7,7 @@ PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `winc
 A standalone 64‑bit exe. No installation, no registry, no runtime to install. Freeware.
 
 ```
- Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
-────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
- #  Plugin        Check   Path                      │ Extension  Status
- 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
- 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
- 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
-```
+<img width="1920" height="1042" alt="2026-10-25_120233" src="https://github.com/user-attachments/assets/f26a2973-e154-4f20-af08-70920d88be9f" />
 
 ---
 
