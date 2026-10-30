@@ -1,15 +1,23 @@
 # PlugExtDet
 
-**Check and correct the plugin entries of Total Commander – safely, with a preview for every change.**
+**Check, understand, manage and install the plugins of Total Commander – safely, with a preview for every change.**
 
 PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `wincmd.ini`, asks every plugin which file types it actually handles, and shows where the two disagree. It also explains why Lister picks a plugin – or doesn't –, shows where content plugin fields are used, and previews what each content plugin delivers for a file. Every fix goes through a preview, a backup and a verified write.
 
-A standalone 64‑bit exe. No installation, no registry, no runtime to install. Freeware.
+A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no registry, no runtime to install. Freeware.
 
+**New in 2.0:** install and uninstall plugins (also from ZIP, RAR and 7z), *Check Lister* – which Lister plugin shows a file and why, gaps in `[ListerModes]` found and closed, detect strings longer than TC reads (~2 KB) caught, 32‑bit plugins queried, yellow search highlight, key bar, a completely new help.
 
-<img width="1920" height="1042" alt="2026-10-25_120233" src="https://github.com/user-attachments/assets/b199d001-b807-41cf-80a5-1ac1929bbe8e" />
+```
+ Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
+────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
+ #  Plugin        Check   Path                      │ Extension  Status
+ 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
+ 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
+ 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
+```
 
-
+---
 
 ## Why
 
@@ -42,6 +50,8 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 ### Find
 - **Findings tab** – errors, differences and notes in one list, written in plain language: what is going on, what you notice in TC, and what you can do; Enter jumps to the entry
 - **Mark as checked** (Ins) – intended oddities stay out of the way until something changes
+- **Gap in `[ListerModes]`** – TC stops reading view modes at the first empty entry; PlugExtDet finds it and closes the gap
+- **Detect string too long** – TC reads only about 2 KB of a detect string; longer ones are reported and never written
 - **Folder check** – plugins in a folder that doesn't match their type are shown in orange
 - **Leftovers** – sections in plugin INIs (e.g. `pkplugin.ini`) without a matching plugin
 - **Not installed** – plugin files in the plugins folder that are in no INI
@@ -51,6 +61,13 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 - Where TC uses a content plugin's fields: column views, tooltips, thumbnails, searches, rename templates
 - Shown as symbols with a count in the extra column *Used in*, spelled out in the tooltip, the detail field and the plugin info – so you know what would be missing before you remove a plugin
 
+### Install and uninstall
+- **Install** from a folder, `pluginst.inf`, a plugin file or the downloaded **ZIP, RAR or 7z** (Ctrl+I, or a TC button with `/install "%P%N"`)
+- Archives are unpacked with **TC's own DLLs** (LIBDEFLATE64, UNRAR64, TC7Z64) in a separate process; paths with `..`, links, encrypted entries and archive bombs are refused
+- The dialog shows files (32/64 bit), target (editable), extensions and a **check**: who comes first, which extensions another plugin already has; updates keep your own detect string on request
+- **Uninstall** removes the entries and, if the folder belongs to the plugin alone, moves it to the recycle bin – or just **disable** it
+- Works without a running TC: the TC folder is remembered
+
 ### Preview
 - **Preview tab** – pick a file and see what every content plugin delivers: field, value, readable type and where it is used
 - **Sidebar** with all content plugins and how many fields have a value; the plugin that knows most about the file opens on the right, tick more as you like – remembered per extension for the session
@@ -58,6 +75,7 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 - Matching plugins are asked in the background, each in its own short-lived process with a time limit; others on request; nothing is ever written
 - Units on request, ready field reference `[=plugin.field]` to copy
 - Call it from a TC button: `PlugExtDet.exe /preview "%P%N"` – a running PlugExtDet receives the file
+- **Check Lister** (`/lister "%P%N"`) – all Lister plugins for one file in TC's order: what TC decides first (view mode, own viewer, blocks), *matches with F3*, *only with key 4*, *does not match* – each with its reason, the detect string part by part, and the **key 4 cycle**; right-click: *Always use … for .EXT* or *Move before the other candidates*
 
 ### Fix
 - **Checkboxes** – switch single extensions on or off
@@ -85,8 +103,10 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 - If the INI is changed outside PlugExtDet (by hand or by TC), it offers to read it again
 
 ### Comfort
-- Colors: Standard (Windows), Light, Dark – dark title bar on Windows 10/11, high contrast respected
-- Help as CHM (F1 opens the chapter of the current tab), legend with every symbol (Shift+F1)
+- Colors: Standard (Windows), Light, Dark (eggshell text) – dark title bar on Windows 10/11, high contrast respected
+- Help as CHM with *I want to …* tasks, a reference for every key and menu, background and terms A–Z (F1 opens the page of the current tab, Shift+F1 the symbols)
+- **Find** (Ctrl+F) highlights every match in yellow, like Explorer
+- **Key bar** at the bottom like in TC
 - English and German built in; Russian, Ukrainian, Czech and Danish included as example files; any language can be added
 - Language follows TC automatically and can be switched without restart
 - Resizable panes, sortable columns, own commands in the context menu
@@ -102,7 +122,7 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 1. Unpack the zip into any folder, keep the files together
 2. Start `PlugExtDet.exe` – it finds TC's `wincmd.ini` by itself (or *File › Open wincmd.ini…*)
 3. Look at the **Findings** tab first – it's the quickest overview
-4. Optional: add a TC button with `PlugExtDet.exe /preview "%P%N"` to preview the selected file
+4. Optional: TC buttons with `/preview "%P%N"`, `/lister "%P%N"` or `/install "%P%N"` for the file under the cursor
 
 Nothing is written until you press **Ctrl+S** and confirm the preview.
 
@@ -119,6 +139,8 @@ Nothing is written until you press **Ctrl+S** and confirm the preview.
 | Enter / Backspace | Jump to entry / back to findings |
 | Alt+Enter | Plugin info |
 | Tab (in F4) | Complete keyword or extension |
+| Ctrl+I | Install plugin |
+| Ctrl+F, F3 | Find, next match |
 | Ctrl+S | Save changes |
 | Ctrl+E | Settings |
 | F5 | Reload |
@@ -128,6 +150,7 @@ Nothing is written until you press **Ctrl+S** and confirm the preview.
 | File | Purpose |
 |---|---|
 | `PlugExtDet.exe` | the program |
+| `PlugExtDet32.exe` | helper that asks 32-bit-only plugins (started by PlugExtDet.exe only) |
 | `Language\*_example.lng` | translations as examples (UTF-16) – remove `_example` from the name to use one |
 | `PlugExtDet_eng.chm`, `PlugExtDet_deu.chm` | help |
 | `PlugExtDet.ini` | settings, remembered and deactivated entries, plugins skipped in the preview; created on first start |
@@ -154,9 +177,9 @@ Lines starting with `;` are not translated yet – translate them and remove the
 
 ## Good to know
 
-- 32-bit-only plugins can't be queried by the 64-bit exe; they are listed but not compared or previewed
+- 32-bit-only plugins are queried through the small helper `PlugExtDet32.exe` (same source, built as 32-bit). Without it they are listed but not compared or previewed. Note: a 64-bit TC still cannot load them.
 - TC's own fields (`tc.*`) are read by PlugExtDet itself as *tc (pseudo)* – almost exactly like TC; file system plugin fields (`<fs>`) only exist inside TC
-- Some plugins refuse to load outside TC (Windows error 1114); they are marked, not treated as broken
+- Some plugins start on purpose only inside TC (e.g. AudioInfo); they work normally there and are shown neutrally (grey dot), not as an error
 - Windows shows CHM help from network drives only as a table of contents – copy the help locally
 - Unsigned tools are occasionally flagged by machine-learning virus scanners; such reports are submitted to the vendor as false positives
 
