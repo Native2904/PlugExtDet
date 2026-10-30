@@ -8,16 +8,8 @@ A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no re
 
 **New in 2.0:** install and uninstall plugins (also from ZIP, RAR and 7z), *Check Lister* – which Lister plugin shows a file and why, gaps in `[ListerModes]` found and closed, detect strings longer than TC reads (~2 KB) caught, 32‑bit plugins queried, yellow search highlight, key bar, a completely new help.
 
-```
- Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
-────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
- #  Plugin        Check   Path                      │ Extension  Status
- 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
- 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
- 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
-```
+<img width="1920" height="1042" alt="2026-10-30_191806" src="https://github.com/user-attachments/assets/729f956e-fc5c-4713-96fa-2cd59b5ff289" />
 
----
 
 ## Why
 
