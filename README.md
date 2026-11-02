@@ -4,22 +4,14 @@
 
 PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `wincmd.ini`, asks every plugin which file types it actually handles, and shows where the two disagree. It also explains why Lister picks a plugin – or doesn't –, shows where content plugin fields are used, and previews what each content plugin delivers for a file. Every fix goes through a preview, a backup and a verified write.
 
+<img width="1920" height="1042" alt="2026-10-30_191806" src="https://github.com/user-attachments/assets/729f956e-fc5c-4713-96fa-2cd59b5ff289" />
+
 A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no registry, no runtime to install. Freeware.
 
 **New in 2.0.1:** updates keep your own settings files, plugin files still in use are replaced safely (never a half update), ZIPs like Imagine 2.8 unpack, finding "updated" and a light green row after a plugin file changed, a tab **Disabled** (also shows what the old TC Plugins Manager disabled), extra column *State* (▶ loaded, ◷ idle, Ⅱ disabled), detect strings compacted when they would be too long, Ctrl+U = uninstall, French translation and French help (thanks nsp), fixes from the forum (F4 with spaces, Synta, language switch, preview redraw).
 
 **New in 2.0:** install and uninstall plugins (also from ZIP, RAR and 7z), *Check Lister* – which Lister plugin shows a file and why, gaps in `[ListerModes]` found and closed, detect strings longer than TC reads (~2 KB) caught, 32‑bit plugins queried, yellow search highlight, key bar, a completely new help.
 
-```
- Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
-────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
- #  Plugin        Check   Path                      │ Extension  Status
- 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
- 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
- 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
-```
-
----
 
 ## Why
 
