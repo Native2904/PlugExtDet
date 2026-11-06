@@ -2,6 +2,9 @@
 
 **Check, understand, manage and install the plugins of Total Commander – safely, with a preview for every change.**
 
+<img width="3652" height="1115" alt="2026-11-06_163130" src="https://github.com/user-attachments/assets/80711072-9a36-43d5-af1e-053db3c214c6" />
+
+
 PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `wincmd.ini`, asks every plugin which file types it actually handles, and shows where the two disagree. It also explains why Lister picks a plugin – or doesn't –, shows where content plugin fields are used, and previews what each content plugin delivers for a file. Every fix goes through a preview, a backup and a verified write.
 
 A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no registry, no runtime to install. Freeware.
