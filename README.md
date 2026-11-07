@@ -2,18 +2,28 @@
 
 **Check, understand, manage and install the plugins of Total Commander – safely, with a preview for every change.**
 
-<img width="3652" height="1115" alt="2026-11-06_163130" src="https://github.com/user-attachments/assets/80711072-9a36-43d5-af1e-053db3c214c6" />
-
-
 PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `wincmd.ini`, asks every plugin which file types it actually handles, and shows where the two disagree. It also explains why Lister picks a plugin – or doesn't –, shows where content plugin fields are used, and previews what each content plugin delivers for a file. Every fix goes through a preview, a backup and a verified write.
 
 A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no registry, no runtime to install. Freeware.
+
+**New in 2.1.0:** packer extensions can be **added, removed and renamed** in the F4 window – like in the old TC Plugins Manager, but with preview and backup. An extension that another packer has is moved after asking (also right-click › Add extension, key Ins). Right-click › **Plugin settings…** (Alt+E) opens the settings window of packer and file system plugins (like TC does), **Settings file in editor** opens a plugin's own settings file or its section in contplug.ini & co. Search: if nothing is found in the current tab, it shows the hits in the other plugin tabs (F3 goes there) and forgives typos (fuzzy search). New settings tab *Confirmations*. Install window in dark mode: cleaner option buttons and check boxes.
 
 **New in 2.0.2:** preview shows floating values with text in full (EXIF GPS: "427m" instead of "4"), separate Unicode plugin files (.uwlx/.uwdx/.uwcx/.uwfx) handled like TC 32 does: the file TC 32 loads is asked, no false "missing", a note, and a finding for 32-bit files TC 32 refuses (only Unicode functions) with "Copy as .uw?x" (also offered when installing); column *Unicode* shows *yes | .uwdx* / *yes | ¬ANSI*. Right-click › **Show in editor (line N)** opens the INI at the entry – Windows Notepad or your own command; ready lines for AkelPad, Notepad++, EmEditor, UltraEdit, VS Code and more on the help page *Editors*. **File › Unify paths** writes plugin paths in the TC folder as `%COMMANDER_PATH%`.
 
 **New in 2.0.1:** updates keep your own settings files, plugin files still in use are replaced safely (never a half update), ZIPs like Imagine 2.8 unpack, finding "updated" and a light green row after a plugin file changed, a tab **Disabled** (also shows what the old TC Plugins Manager disabled), extra column *State* (▶ loaded, ◷ idle, Ⅱ disabled), detect strings compacted when they would be too long, Ctrl+U = uninstall, French translation and French help (thanks nsp), fixes from the forum (F4 with spaces, Synta, language switch, preview redraw).
 
 **New in 2.0:** install and uninstall plugins (also from ZIP, RAR and 7z), *Check Lister* – which Lister plugin shows a file and why, gaps in `[ListerModes]` found and closed, detect strings longer than TC reads (~2 KB) caught, 32‑bit plugins queried, yellow search highlight, key bar, a completely new help.
+
+```
+ Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
+────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
+ #  Plugin        Check   Path                      │ Extension  Status
+ 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
+ 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
+ 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
+```
+
+---
 
 ## Why
 
@@ -78,6 +88,7 @@ PlugExtDet makes these visible – and fixable – in a few seconds.
 - **Checkboxes** – switch single extensions on or off
 - **Plugin-friendly editing** – extensions are cut out of or added to their bracket, the rest of the string stays exactly as written; works with several brackets like `FORCE & (…) | MULTIMEDIA & (…)`; exclusion lists `MULTIMEDIA & !(…)` can be maintained the same way
 - **Take the plugin's detect string** with one click, or edit any entry as text (F4) and delete it (Del) – the TC way
+- **Packer extensions** – add, remove and rename them in the F4 window, like the old TC Plugins Manager; capabilities as check boxes
 - **Edit with help** – a syntax line checks the detect string while you type, Tab completes keywords and extensions, and PlugExtDet asks before you apply a faulty string
 - **Change the order** of Lister and Content plugins – select several, move them together, gather scattered ones into a block (Ctrl+↑/↓, Ctrl+Home/End)
 - **Deactivate** a plugin without touching its files – the entry is kept and can be activated again at its old place
@@ -130,11 +141,12 @@ Nothing is written until you press **Ctrl+S** and confirm the preview.
 | F1 / Shift+F1 | Help / Legend |
 | F4 | Edit entry |
 | Del | Delete entry (or uncheck extension) |
-| Ins | Mark finding as checked |
+| Ins | Mark finding as checked; Packer tab: add extension |
 | Ctrl+↑ / Ctrl+↓ | Move selected plugins up / down (Lister, Content) |
 | Ctrl+Home / Ctrl+End | Move selected plugins to top / bottom |
 | Enter / Backspace | Jump to entry / back to findings |
 | Alt+Enter | Plugin info |
+| Alt+E | Plugin settings (packer, file system) or settings file in editor |
 | Tab (in F4) | Complete keyword or extension |
 | Ctrl+I | Install plugin |
 | Ctrl+U | Uninstall or disable plugin |
