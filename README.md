@@ -6,6 +6,22 @@ PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `winc
 
 A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no registry, no runtime to install. Freeware.
 
+**New in 2.8.0:** type a plugin’s position (F2 or double-click the number), install several files in one window with progress, clearer selection, “Overview” window.
+
+**New in 2.7.0:** Help › Total Commander help – opens the matching page of TC’s own help (in TC’s language) and the detect string syntax in the WLX SDK. Help checked against TC’s sources, with original quotes.
+
+**New in 2.6.0:** right-click on a tab › Report – ranked lists by number of extensions, grouped by extensions, [MULTIMEDIA], [FORCE], condition, [*].
+
+**New in 2.5.0:** install dialog: “move the installation file to the recycle bin afterwards” (remembered). Fix: Enter in a batch install dialog could install at once.
+
+**New in 2.4.0:** batch uninstall – select several plugins, Ctrl+U: one window with a list (folder to the recycle bin per plugin), one TC restart. French help up to date.
+
+**New in 2.3.0:** batch install – “Add to list” in the install dialog, several plugins with one TC restart (Ctrl+S or “Install all”); Ctrl+I and `/install %P%S` take several files at once.
+
+**New in 2.2.0:** the detect-string editor (F4) knows exclusions – `!` + Tab gives `!(EXT="` with the extension list, Tab inside `!( … )` offers more extensions or `)`, and an unfinished end is shown in grey instead of red.
+
+**New in 2.1.1:** bug fix – if Total Commander closes too slowly when saving, PlugExtDet now writes nothing and asks you to wait a moment (before, several TCs could be left behind). Uninstall checks every file of the plugin folder first and names a file that is in use.
+
 **New in 2.1.0:** packer extensions can be **added, removed and renamed** in the F4 window – like in the old TC Plugins Manager, but with preview and backup. An extension that another packer has is moved after asking (also right-click › Add extension, key Ins). Right-click › **Plugin settings…** (Alt+E) opens the settings window of packer and file system plugins (like TC does), **Settings file in editor** opens a plugin's own settings file or its section in contplug.ini & co. Search: if nothing is found in the current tab, it shows the hits in the other plugin tabs (F3 goes there) and forgives typos (fuzzy search). New settings tab *Confirmations*. Install window in dark mode: cleaner option buttons and check boxes.
 
 **New in 2.0.2:** preview shows floating values with text in full (EXIF GPS: "427m" instead of "4"), separate Unicode plugin files (.uwlx/.uwdx/.uwcx/.uwfx) handled like TC 32 does: the file TC 32 loads is asked, no false "missing", a note, and a finding for 32-bit files TC 32 refuses (only Unicode functions) with "Copy as .uw?x" (also offered when installing); column *Unicode* shows *yes | .uwdx* / *yes | ¬ANSI*. Right-click › **Show in editor (line N)** opens the INI at the entry – Windows Notepad or your own command; ready lines for AkelPad, Notepad++, EmEditor, UltraEdit, VS Code and more on the help page *Editors*. **File › Unify paths** writes plugin paths in the TC folder as `%COMMANDER_PATH%`.
