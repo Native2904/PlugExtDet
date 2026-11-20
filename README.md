@@ -6,6 +6,32 @@ PlugExtDet (*Plugin Extension Detector*) reads the plugin sections of your `winc
 
 A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no registry, no runtime to install. Freeware.
 
+**New in 2.18.2:** placeholder %t for own commands (e.g. search a missing file with Everything), right-click in the lower field, fixes.
+
+**2.18.1:** Czech help (PlugExtDet_cze.chm) – opens when PED runs in Czech.
+
+**2.18.0:** clearer finding texts (Problem / Solution), filter findings by area as well as by kind, open TC's button bar dialog from a button bar finding.
+
+**2.17.1:** finer button bar check (along the TC help), right-click the Findings tab to filter by kind.
+
+**2.17.0:** findings also check the button bars and usercmd.ini – missing programs, bars, icons, start folders, em_ commands and file system plugins.
+
+**2.16.0:** install from ZIP archives packed with LZMA (method 14); light theme with a cream white background.
+
+**New in 2.15.0:** clearer keyboard focus; Settings › Own commands; finding “settings file twice”; settings files of plugin families are found.
+
+**New in 2.14.0:** own menu TC (TC configuration pages and TC help); context menu Open › with own commands; findings without an entry show the place in the editor; Tab/F6 keyboard order; redirects with %COMMANDER_INI% also when not started from TC.
+
+**New in 2.13.0:** TC settings (Plugins, Custom columns, Thumbnails, Packer, 7-Zip); Ctrl+Z discards changes; Tab/Shift+Tab cycle; the splitter above the lower field follows the mouse exactly.
+
+**New in 2.12.0:** finding “fields of a missing plugin” – right-click › In TC: Custom columns… opens the dialog in the running TC.
+
+**New in 2.11.0:** Ctrl+Tab / Ctrl+Shift+Tab switches between the tabs.
+
+**New in 2.10.0:** hide the basic columns Version, Check and Path (right-click on the column headers) and rearrange columns by dragging their headers; # and Plugin stay in front.
+
+**New in 2.9.0:** path column shortened visibly (folder and file name stay), extra column “Folder”, %COMMANDER_PATH% in the spelling your INI uses, File › PlugExtDet folder, window position kept.
+
 **New in 2.8.0:** type a plugin’s position (F2 or double-click the number), install several files in one window with progress, clearer selection, “Overview” window.
 
 **New in 2.7.0:** Help › Total Commander help – opens the matching page of TC’s own help (in TC’s language) and the detect string syntax in the WLX SDK. Help checked against TC’s sources, with original quotes.
@@ -30,8 +56,16 @@ A standalone 64‑bit exe (plus a small 32‑bit helper). No installation, no re
 
 **New in 2.0:** install and uninstall plugins (also from ZIP, RAR and 7z), *Check Lister* – which Lister plugin shows a file and why, gaps in `[ListerModes]` found and closed, detect strings longer than TC reads (~2 KB) caught, 32‑bit plugins queried, yellow search highlight, key bar, a completely new help.
 
+```
+ Lister │ Content │ Packer │ File system │ Inventory │ Findings │ Preview
+────────┴─────────┴────────┴─────────────┴───────────┴──────────┴─────────
+ #  Plugin        Check   Path                      │ Extension  Status
+ 0  ImageViewer    ±      %COMMANDER_PATH%\wlx\…    │ ☑ PDF      active
+ 1  MarkdownView   =      %COMMANDER_PATH%\wlx\…    │ ☑ DJVU     active, not from plugin
+ 2  OldViewer      ×      %COMMANDER_PATH%\wlx\…    │ ☐ EPUB     new in plugin
+```
 
-<img width="1920" height="1042" alt="2026-11-13_140910" src="https://github.com/user-attachments/assets/fb272b61-3ff9-4e7e-a02b-4d4c5fde20a3" />
+---
 
 ## Why
 
@@ -170,7 +204,7 @@ Nothing is written until you press **Ctrl+S** and confirm the preview.
 | `PlugExtDet.exe` | the program |
 | `PlugExtDet32.exe` | helper that asks 32-bit-only plugins (started by PlugExtDet.exe only) |
 | `Language\*_example.lng` | translations as examples (UTF-16) – remove `_example` from the name to use one |
-| `PlugExtDet_eng.chm`, `PlugExtDet_deu.chm`, `PlugExtDet_fra.chm` | help |
+| `PlugExtDet_eng.chm`, `PlugExtDet_deu.chm`, `PlugExtDet_fra.chm`, `PlugExtDet_cze.chm` | help |
 | `PlugExtDet.ini` | settings, remembered and deactivated entries, plugins skipped in the preview; created on first start |
 | `PlugExtDet.inventory.ini`, `PlugExtDet.log` | inventory and change log |
 | `Backups\` | backups made before every save |
